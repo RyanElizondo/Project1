@@ -1,0 +1,26 @@
+public enum major {
+    //declare enum types
+    CS("01:198","SAS"), MATH("01:640","SAS"),
+    EE("14:332","SOE"), ITI("04:547","SC&I"),
+    BAIT("33:136","RBS");
+
+    //private variables to store the major codes and school where the majors exist
+    private String majorCode;
+    private String school;
+
+    //constructor for majors
+    private major(String majorCode, String school){
+        this.majorCode = majorCode;
+        this.school = school;
+    }
+
+    //getter methods
+    public String getMajorCode() {
+        return majorCode;
+    }
+    public String getSchool() {
+        return school;
+    }
+
+}
+
