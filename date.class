@@ -1,0 +1,131 @@
+import java.util.Calendar;
+public class date {
+    private int year;
+    private int month;
+    private int day;
+
+    Calendar c = Calendar.getInstance();
+
+    public date() {
+        this.year = c.get(Calendar.YEAR);
+        this.day = c.get(Calendar.DAY_OF_MONTH);
+        this.month = c.get(Calendar.MONTH) + 1; //since calendar.month goes from 0 (jan) to 11 (dec)
+    }
+
+    public date(String date) {
+        this.month = Integer.parseInt(date.substring(0,2));
+        this.day = Integer.parseInt(date.substring(3,5));
+        this.year =  Integer.parseInt(date.substring(6));
+    }
+
+    public int getDay(){
+        return day;
+    }
+    public int getMonth(){
+        return month;
+    }
+    public int getYear(){
+        return year;
+    }
+
+    public static final int QUADRENNIAL = 4;
+    public static final int CENTENNIAL = 100;
+    public static final int QUATERCENTENNIAL = 400;
+    public static final int daysInJanuary = 31;
+    public static final int daysInFebruary = 28;
+    public static final int daysInFebruaryLeapYear = 29;
+    public static final int daysInMarch = 31;
+    public static final int daysInApril = 30;
+    public static final int daysInMay = 31;
+    public static final int daysInJune = 30;
+    public static final int daysInJuly = 31;
+    public static final int daysInAugust = 31;
+    public static final int daysInSeptember = 30;
+    public static final int daysInOctober = 31;
+    public static final int daysInNovember = 30;
+    public static final int daysInDecember = 31;
+
+
+    public boolean isLeapYear() {
+        if((year % QUADRENNIAL) == 0){
+            if((year % CENTENNIAL)==0){
+                if((year % QUATERCENTENNIAL)==0){
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+    }
+    public boolean isValid() {
+        if(month > 12 || month < 1) {
+            return false;
+        } else {
+            switch(month) {
+                case 1:
+                    if(day > daysInJanuary)
+                        return false;
+                case 2:
+                    if(isLeapYear()){
+                        if(day > daysInFebruaryLeapYear)
+                            return false;
+                    } else {
+                        if(day > daysInFebruary)
+                            return false;
+                    }
+                case 3:
+                    if(day > daysInMarch)
+                        return false;
+                case 4:
+                    if(day > daysInApril)
+                        return false;
+                case 5:
+                    if(day > daysInMay)
+                        return false;
+                case 6:
+                    if(day > daysInJune)
+                        return false;
+                case 7:
+                    if(day > daysInJuly)
+                        return false;
+                case 8:
+                    if(day > daysInAugust)
+                        return false;
+                case 9:
+                    if(day > daysInSeptember)
+                        return false;
+                case 10:
+                    if(day > daysInOctober)
+                        return false;
+                case 11:
+                    if(day > daysInNovember)
+                        return false;
+                case 12:
+                    if(day > daysInDecember)
+                        return false;
+            }
+            if(year < c.get(Calendar.YEAR)){
+                return true;
+            } else if (year > c.get(Calendar.YEAR)){
+                return false;
+            } else {
+                if(this.month < (c.get(Calendar.MONTH)+1)){
+                    return true;
+                } else if (this.month > (c.get(Calendar.MONTH)+1)){
+                    return false;
+                } else {
+                    if(this.day <= (c.get(Calendar.DAY_OF_MONTH))) {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
+}
