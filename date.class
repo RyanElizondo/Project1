@@ -1,10 +1,40 @@
 import java.util.Calendar;
-public class date {
+public class date implements Comparable<date> {
     private int year;
     private int month;
     private int day;
 
     Calendar c = Calendar.getInstance();
+
+    @Override
+    public String toString(){
+        String  str = "";
+        if(this.month < 10) str = str + "0";
+        str = str + this.month + "/";
+        if(this.day < 10) str = str + "0";
+        str = str + this.day + "/";
+        str = str + this.year;
+        return str;
+    }
+    @Override
+    public boolean equals(Object Date){
+       if(this == Date) return true;
+       if(!(Date instanceof date)) return false;
+       date D = (date) Date;
+       if(this.day == D.getDay() && this.month == D.getMonth() && this.year == D.getYear()) return true;
+       return false;
+    }
+    //if the instance object is less than the parameter object return -1, if larger return 1, if equal return 0
+    @Override
+    public int compareTo(date Date){
+        if(this.year < Date.getYear()) return -1;
+        if(this.year > Date.getYear()) return 1;
+        if(this.month > Date.getMonth()) return -1;
+        if(this.month < Date.getMonth()) return 1;
+        if(this.day < Date.getDay()) return -1;
+        if(this.day > Date.getDay()) return 1;
+        return 0;
+    }
 
     public date() {
         this.year = c.get(Calendar.YEAR);
