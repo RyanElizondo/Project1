@@ -1,0 +1,45 @@
+public class Roster {
+    private Student[] roster;
+    private int size;
+
+    public Roster(){
+        this.size = 4;
+    }
+
+    //returns index if found, -1 otherwise
+    private int find(Student student){
+        for(int i = 0; i < size; i++){
+            if(roster[i].equals(student)) return i;
+        }
+        return -1;
+    }
+    //increase capacity of array by 4
+    private void grow(){
+        int tempSize = size;
+        size+=4;
+        Student[] tempArr = new Student[size];
+        for(int i = 0; i < tempSize; i++){
+            tempArr[i] = roster[i];
+        }
+        roster = tempArr;
+    }
+
+    public boolean add(Student student){
+        if(roster[size-1]!=null) grow();
+        int i = 0;
+        while(roster[i]!=null){
+            i++;
+        }
+        roster[i] = student;
+        return true;
+    }
+    
+
+    public void print(){
+        int i = 0;
+        while(roster[i]!=null){
+            System.out.println(roster[i].toString());
+            i++;
+        }
+    }
+}
