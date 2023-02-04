@@ -34,8 +34,42 @@ public class Roster {
         roster[i] = student;
         return true;
     }
-    
+
+    public boolean contains(Student student){
+        for(int i = 0; i < size; i++){
+            if(roster[i]==null) return false;
+            if(roster[i].compareTo(student)==0) return true;
+        }
+        return false;
+    }
+
+    public boolean remove(Student student){
+        if(!contains(student)) return false;
+        int index = find(student);
+        for(int i = index; i < size; i++){
+            if(i+1<size && roster[i+1]==null){
+                roster[i] = null;
+                return true;
+            }
+            if(i+1 < size) roster[i] = roster[i+1];
+        }
+        roster[size-1] = null;
+        return true;
+    }
+
     public void print(){
+        //sort lexicographically
+        for(int i = 0; i < size; i++){
+            for(int j = i + 1; j < size; j++){
+                if(roster[i]==null || roster[j]==null) break;
+                if(roster[i].compareTo(roster[j])>0){
+                    Student temp = roster[i];
+                    roster[i] = roster[j];
+                    roster[j] = temp;
+                }
+            }
+        }
+        //print from 0 to size-1
         int i = 0;
         while(i!=size && roster[i]!=null){
             System.out.println(roster[i].toString());
