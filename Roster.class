@@ -4,6 +4,7 @@ public class Roster {
 
     public Roster(){
         this.size = 4;
+        this.roster = new Student[size];
     }
 
     //returns index if found, -1 otherwise
@@ -34,12 +35,11 @@ public class Roster {
         return true;
     }
     
-
     public void print(){
         int i = 0;
-        while(roster[i]!=null){
+        while(i!=size && roster[i]!=null){
             System.out.println(roster[i].toString());
-            i++;
+            if(i<size) i++;
         }
     }
 }
