@@ -37,7 +37,15 @@ public class Student implements Comparable<Student>{
     }
     @Override
     public String toString(){
-        return profile.toString() + " " + major.getMajorCode() + " " + creditCompleted;
+        return profile.toString() + " (" + major.getMajorCode() + " " + major.getName() + " " + major.getSchool() + ") credits completed: " + creditCompleted
+                + " (" + getGrade() + ")";
+    }
+
+    public String getGrade(){
+        if(this.creditCompleted < 30) return "Freshman";
+        if(this.creditCompleted < 60) return "Sophomore";
+        if(this.creditCompleted < 90) return "Junior";
+        return "Senior";
     }
 
 }
