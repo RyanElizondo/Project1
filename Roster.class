@@ -134,6 +134,17 @@ public class Roster {
                 }
             }
         }
+        //sort by profile if two students have the same credits
+        for(int i = 0; i < size; i++){
+            for(int j = i + 1; j < size; j++){
+                if(roster[i]==null || roster[j]==null) break;
+                if(roster[i].compareTo(roster[j])>0 && roster[i].getCreditCompleted() == roster[j].getCreditCompleted()){
+                    Student temp = roster[i];
+                    roster[i] = roster[j];
+                    roster[j] = temp;
+                }
+            }
+        }
         //print sequentially
         int i = 0;
         while(i!=size && roster[i]!=null){
