@@ -76,4 +76,69 @@ public class Roster {
             if(i<size) i++;
         }
     }
+
+    //first sort by school, then sort by major (if schools are same), then sort by name (if majors are same)
+    public void printBySchoolMajor(){
+        //sort by school
+        for(int i = 0; i < size; i++){
+            for(int j = i + 1; j < size; j++){
+                if(roster[i]==null || roster[j]==null) break;
+                if(roster[i].getMajor().getSchool().compareTo(roster[j].getMajor().getSchool())>0){
+                    Student temp = roster[i];
+                    roster[i] = roster[j];
+                    roster[j] = temp;
+                }
+            }
+        }
+        //sort by major WITHIN school
+        for(int i = 0; i < size; i++){
+            for(int j = i + 1; j < size; j++){
+                if(roster[i]==null || roster[j]==null) break;
+                if(roster[i].getMajor().getMajorCode().compareTo(roster[j].getMajor().getMajorCode())>0 &&
+                roster[i].getMajor().getSchool().compareTo(roster[j].getMajor().getSchool())==0){
+                    Student temp = roster[i];
+                    roster[i] = roster[j];
+                    roster[j] = temp;
+                }
+            }
+        }
+        //sort by name within school and major
+        for(int i = 0; i < size; i++){
+            for(int j = i + 1; j < size; j++){
+                if(roster[i]==null || roster[j]==null) break;
+                if(roster[i].compareTo(roster[j])>0 &&
+                        roster[i].getMajor().getSchool().compareTo(roster[j].getMajor().getSchool())==0 &&
+                        roster[i].getMajor().getMajorCode().compareTo(roster[j].getMajor().getMajorCode())==0){
+                    Student temp = roster[i];
+                    roster[i] = roster[j];
+                    roster[j] = temp;
+                }
+            }
+        }
+        //print array sequentially
+        int i = 0;
+        while(i!=size && roster[i]!=null){
+            System.out.println(roster[i].toString());
+            if(i<size) i++;
+        }
+    }
+    public void printByStanding(){
+        //sort by standing (credit completed)
+        for(int i = 0; i < size; i++){
+            for(int j = i + 1; j < size; j++){
+                if(roster[i]==null || roster[j]==null) break;
+                if(roster[i].getCreditCompleted() < roster[j].getCreditCompleted()){
+                    Student temp = roster[i];
+                    roster[i] = roster[j];
+                    roster[j] = temp;
+                }
+            }
+        }
+        //print sequentially
+        int i = 0;
+        while(i!=size && roster[i]!=null){
+            System.out.println(roster[i].toString());
+            if(i<size) i++;
+        }
+    }
 }
