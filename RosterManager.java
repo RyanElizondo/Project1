@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 public class RosterManager {
     Scanner sc = new Scanner(System.in);
     Roster roster = new Roster();
@@ -7,10 +6,8 @@ public class RosterManager {
     void run() {
         System.out.println("Roster Manager is running...");
         while (true) {
-            System.out.println("Enter a command: ");
             String command = sc.nextLine();
             String[] line = command.split("\\s+");
-            //command = line[0];
             if (line[0].equals("A")) { //add a new student
                 Student student = new Student(new Profile(line[0], line[1], new date(line[2])), majors[Integer.parseInt(line[3])], Integer.parseInt(line[4]));
                 roster.add(student);
@@ -32,6 +29,8 @@ public class RosterManager {
             } else if(line[0].equals("Q")){ //terminate run
                 System.out.println("Roster Manager terminated.");
                 break;
+            } else {
+                System.out.println("Invalid command");
             }
         }
     }
