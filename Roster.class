@@ -1,4 +1,5 @@
 public class Roster {
+    int NOT_FOUND = -1;
     private Student[] roster;
     private int size;
 
@@ -12,7 +13,7 @@ public class Roster {
         for(int i = 0; i < size; i++){
             if(roster[i].equals(student)) return i;
         }
-        return -1;
+        return NOT_FOUND;
     }
     //increase capacity of array by 4
     private void grow(){
@@ -71,6 +72,9 @@ public class Roster {
         }
         //print from 0 to size-1
         int i = 0;
+        if(roster[i]==null){
+            System.out.println("Student roster is empty!");
+        }
         while(i!=size && roster[i]!=null){
             System.out.println(roster[i].toString());
             if(i<size) i++;
@@ -117,6 +121,9 @@ public class Roster {
         }
         //print array sequentially
         int i = 0;
+        if(roster[i]==null){
+            System.out.println("Student roster is empty!");
+        }
         while(i!=size && roster[i]!=null){
             System.out.println(roster[i].toString());
             if(i<size) i++;
@@ -147,6 +154,9 @@ public class Roster {
         }
         //print sequentially
         int i = 0;
+        if(roster[i]==null){
+            System.out.println("Student roster is empty!");
+        }
         while(i!=size && roster[i]!=null){
             System.out.println(roster[i].toString());
             if(i<size) i++;
