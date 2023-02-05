@@ -162,7 +162,7 @@ public class Roster {
             if(i<size) i++;
         }
     }
-    public void changeMajor(Student student, major major){
+    public void changeMajor(Student student, Major major){
         if(!contains(student)) return; //if student is not in roster, do nothing
         int index = find(student); //find index of student
         roster[index].setMajor(major); //change major
