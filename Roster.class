@@ -44,6 +44,12 @@ public class Roster {
         return false;
     }
 
+    public void changeMajor(Student student, Major major){
+        if(!contains(student)) return; //if student is not in roster, do nothing
+        int index = find(student); //find index of student
+        roster[index].setMajor(major); //change major
+    }
+
     public boolean remove(Student student){
         if(!contains(student)) return false;
         int index = find(student);
