@@ -58,6 +58,32 @@ public class Roster {
         return true;
     }
 
+    public void lexicoSort(){
+        for(int i = 0; i < size; i++){
+            for(int j = i + 1; j < size; j++){
+                if(roster[i]==null || roster[j]==null) break;
+                if(roster[i].compareTo(roster[j])>0){
+                    Student temp = roster[i];
+                    roster[i] = roster[j];
+                    roster[j] = temp;
+                }
+            }
+        }
+    }
+    public void printSchool(String school){
+        lexicoSort();
+        int i = 0;
+        System.out.println("* Students in " + school + " *");
+        if(roster[i]==null){
+            System.out.println("Student roster is empty!");
+        }
+        while(i!=size && roster[i]!=null){
+            if(roster[i].getMajor().getSchool().equalsIgnoreCase(school)) System.out.println(roster[i].toString());
+            if(i<size) i++;
+        }
+        System.out.println("* end of list **");
+
+    }
     public void print(){
         //sort lexicographically
         for(int i = 0; i < size; i++){
@@ -74,10 +100,13 @@ public class Roster {
         int i = 0;
         if(roster[i]==null){
             System.out.println("Student roster is empty!");
-        }
-        while(i!=size && roster[i]!=null){
-            System.out.println(roster[i].toString());
-            if(i<size) i++;
+        } else {
+            System.out.println("* Student roster sorted by last name, first name, DOB **");
+            while (i != size && roster[i] != null) {
+                System.out.println(roster[i].toString());
+                if (i < size) i++;
+            }
+            System.out.println("* end of roster **");
         }
     }
 
@@ -123,10 +152,13 @@ public class Roster {
         int i = 0;
         if(roster[i]==null){
             System.out.println("Student roster is empty!");
-        }
-        while(i!=size && roster[i]!=null){
-            System.out.println(roster[i].toString());
-            if(i<size) i++;
+        } else {
+            System.out.println("* Student roster sorted by school, major **");
+            while (i != size && roster[i] != null) {
+                System.out.println(roster[i].toString());
+                if (i < size) i++;
+            }
+            System.out.println("* end of roster **");
         }
     }
     public void printByStanding(){
@@ -156,15 +188,13 @@ public class Roster {
         int i = 0;
         if(roster[i]==null){
             System.out.println("Student roster is empty!");
+        } else {
+            System.out.println("* Student roster sorted by standing **");
+            while (i != size && roster[i] != null) {
+                System.out.println(roster[i].toString());
+                if (i < size) i++;
+            }
+            System.out.println("* end of roster **");
         }
-        while(i!=size && roster[i]!=null){
-            System.out.println(roster[i].toString());
-            if(i<size) i++;
-        }
-    }
-    public void changeMajor(Student student, Major major){
-        if(!contains(student)) return; //if student is not in roster, do nothing
-        int index = find(student); //find index of student
-        roster[index].setMajor(major); //change major
     }
 }
