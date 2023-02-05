@@ -15,6 +15,11 @@ public class Student implements Comparable<Student>{
     public Major getMajor(){
         return this.major;
     }
+    
+    public void setMajor(Major major) { //change major
+        this.major = major;
+    }
+    
     public int getCreditCompleted(){
         return this.creditCompleted;
     }
