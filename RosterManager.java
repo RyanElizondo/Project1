@@ -9,10 +9,10 @@ public class RosterManager {
             String command = sc.nextLine();
             String[] line = command.split("\\s+");
             if (line[0].equals("A")) { //add a new student
-                Student student = new Student(new Profile(line[0], line[1], new date(line[2])), majors[Integer.parseInt(line[3])], Integer.parseInt(line[4]));
+                Student student = new Student(new Profile(line[1], line[2], new date(line[3])), majors[Integer.parseInt(line[4])], Integer.parseInt(line[5]));
                 roster.add(student);
             } else if (line[0].equals("R")) { //remove a student
-                Student student = new Student(new Profile(line[0], line[1], new date(line[2])), majors[Integer.parseInt(line[3])], Integer.parseInt(line[4]));
+                Student student = new Student(new Profile(line[1], line[2], new date(line[3])), majors[Integer.parseInt(line[4])], Integer.parseInt(line[5]));
                 if (roster.contains(student)){
                     roster.remove(student);
                 }
@@ -25,12 +25,15 @@ public class RosterManager {
             } else if (line[0].equals("L")) { //list student in a specified school
 
             } else if(line[0].equals("C")){ //change a students major
-
+                Student student = new Student(new Profile(line[1], line[2], new date(line[3])), majors[Integer.parseInt(line[4])], Integer.parseInt(line[5]));
+                if(roster.contains(student)){
+                    roster.changeMajor(student, majors[Integer.parseInt(line[5])]);
+                }
             } else if(line[0].equals("Q")){ //terminate run
                 System.out.println("Roster Manager terminated.");
                 break;
             } else {
-                System.out.println("Invalid command");
+                System.out.println(line[0] + "is an invalid command");
             }
         }
     }
