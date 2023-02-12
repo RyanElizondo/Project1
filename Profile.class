@@ -1,9 +1,9 @@
 public class Profile implements Comparable<Profile> {
     private String lname;
     private String fname;
-    private date dob;
+    private Date dob;
 
-    public Profile(String lname, String fname, date dob){
+    public Profile(String lname, String fname, Date dob){
         this.lname = lname;
         this.fname = fname;
         this.dob = dob;
@@ -14,7 +14,7 @@ public class Profile implements Comparable<Profile> {
     public String getLname(){
         return lname;
     }
-    public date getDob(){
+    public Date getDob(){
         return dob;
     }
     @Override
@@ -24,9 +24,9 @@ public class Profile implements Comparable<Profile> {
     @Override
     public boolean equals(Object profile){
         if(this == profile) return true;
-        if(!(profile instanceof date)) return false;
+        if(!(profile instanceof Profile)) return false;
         Profile p = (Profile) profile;
-        if(this.fname == p.getFname() && this.lname == p.getLname() && this.dob.equals(p.getDob())) return true;
+        if(this.fname.equalsIgnoreCase(p.getFname()) && this.lname.equalsIgnoreCase(p.getLname()) && this.dob.equals(p.getDob())) return true;
         return false;
     }
     @Override
