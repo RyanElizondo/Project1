@@ -15,13 +15,12 @@ public class Student implements Comparable<Student>{
     public Major getMajor(){
         return this.major;
     }
-    
-    public void setMajor(Major major) { //change major
-        this.major = major;
-    }
-    
     public int getCreditCompleted(){
         return this.creditCompleted;
+    }
+
+    public void setMajor(Major major) { //change major
+        this.major = major;
     }
 
     @Override
@@ -37,7 +36,8 @@ public class Student implements Comparable<Student>{
         if(this == student) return true;
         if(!(student instanceof Student)) return false;
         Student s = (Student) student;
-        if(this.compareTo(s)==0 && this.major == s.getMajor() && this.creditCompleted == s.getCreditCompleted()) return true;
+        if(this.getProfile().equals(s.getProfile())) return true;
+        //if(this.compareTo(s)==0) return true;
         return false;
     }
     @Override
