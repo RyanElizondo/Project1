@@ -31,5 +31,14 @@ public enum Major {
         return null;
     }
 
+    public int getMajorIndex(String major){
+        if(major.equalsIgnoreCase("CS")) return 0;
+        if(major.equalsIgnoreCase("MATH")) return 1;
+        if(major.equalsIgnoreCase("EE")) return 2;
+        if(major.equalsIgnoreCase("ITI")) return 3;
+        if(major.equalsIgnoreCase("BAIT")) return 4;
+        return -1;
+    }
+
 }
 
