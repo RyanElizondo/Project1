@@ -1,0 +1,63 @@
+public class Checker {
+    public Checker(){
+    }
+    public boolean isInt(String string) {
+        try {
+            Integer.parseInt(string);
+            return true;
+        } catch (NumberFormatException n) {
+            return false;
+        }
+    }
+
+    public boolean isValidToAdd(Date date, String[] line){
+        if(date.isValid()){
+            if(date.isSixteen()) {
+                if(Major.CS.getMajorIndex(line[4])!=-1) {
+                    if(isInt(line[5])) {
+                        if(Integer.parseInt(line[5])>=0) {
+                            return true;
+                        } else {
+                            System.out.println("Credits completed invalid: cannot be negative!");
+                        }
+                    } else {
+                        System.out.println("Credits completed invalid: not an integer!");
+                    }
+                } else {
+                    System.out.println("Major code invalid: " + line[4]);
+                }
+            } else {
+                System.out.println("DOB invalid: " + date.toString() + " younger than 16 years old.");
+            }
+        } else {
+            System.out.println("DOB invalid: " + date.toString() + " not a valid calendar date!");
+        }
+        return false;
+    }
+
+    public Student makeStudent(Profile profile, Major major, int creditsCompleted){
+        Student student = new Student(profile, major, creditsCompleted);
+        return student;
+    }
+
+    public boolean changeStudentMajor(String line[], Roster roster, Major majors[]){
+        int majorIndex = Major.CS.getMajorIndex(line[4]);
+        if(majorIndex==-1){
+            System.out.println("Major code invalid: " + line[4]);
+            return false;
+        }
+        Date date = new Date(line[3]);
+        Profile profile = new Profile(line[2],line[1],date);
+        Major major = majors[majorIndex];
+        Student finder = new Student(profile, Major.CS, 20);
+        if(!roster.contains(finder)){
+            System.out.println(profile.toString() + " is not in the roster.");
+            return false;
+        }
+        Student student = roster.getStudent(finder);
+        student.setMajor(major);
+        System.out.println(profile.toString() + " major changed to " + major.toString());
+        return true;
+    }
+
+}
