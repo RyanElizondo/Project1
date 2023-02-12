@@ -1,5 +1,5 @@
 import java.util.Calendar;
-public class date implements Comparable<date> {
+public class Date implements Comparable<Date> {
     private int year;
     private int month;
     private int day;
@@ -9,9 +9,7 @@ public class date implements Comparable<date> {
     @Override
     public String toString(){
         String  str = "";
-        if(this.month < 10) str = str + "0";
         str = str + this.month + "/";
-        if(this.day < 10) str = str + "0";
         str = str + this.day + "/";
         str = str + this.year;
         return str;
@@ -19,33 +17,33 @@ public class date implements Comparable<date> {
     @Override
     public boolean equals(Object Date){
        if(this == Date) return true;
-       if(!(Date instanceof date)) return false;
-       date D = (date) Date;
+       if(!(Date instanceof Date)) return false;
+       Date D = (Date) Date;
        if(this.day == D.getDay() && this.month == D.getMonth() && this.year == D.getYear()) return true;
        return false;
     }
     //if the instance object is less than the parameter object return -1, if larger return 1, if equal return 0
     @Override
-    public int compareTo(date Date){
+    public int compareTo(Date Date){
         if(this.year < Date.getYear()) return -1;
         if(this.year > Date.getYear()) return 1;
-        if(this.month > Date.getMonth()) return -1;
-        if(this.month < Date.getMonth()) return 1;
+        if(this.month < Date.getMonth()) return -1;
+        if(this.month > Date.getMonth()) return 1;
         if(this.day < Date.getDay()) return -1;
         if(this.day > Date.getDay()) return 1;
         return 0;
     }
 
-    public date() {
+    public Date() {
         this.year = c.get(Calendar.YEAR);
         this.day = c.get(Calendar.DAY_OF_MONTH);
         this.month = c.get(Calendar.MONTH) + 1; //since calendar.month goes from 0 (jan) to 11 (dec)
     }
 
-    public date(String date) {
-        this.month = Integer.parseInt(date.substring(0,2));
-        this.day = Integer.parseInt(date.substring(3,5));
-        this.year =  Integer.parseInt(date.substring(6));
+    public Date(String date) {
+        this.month = Integer.parseInt(date.substring(0,date.indexOf("/")));
+        this.day = Integer.parseInt(date.substring(date.indexOf("/")+1,date.lastIndexOf("/")));
+        this.year =  Integer.parseInt(date.substring(date.lastIndexOf("/")+1));
     }
 
     public int getDay(){
@@ -91,6 +89,22 @@ public class date implements Comparable<date> {
             return false;
         }
     }
+
+    public boolean isSixteen() {
+        int age = c.get(Calendar.YEAR) - this.year;
+        boolean tf;
+        if(this.month > c.get(Calendar.MONTH)+1){
+            age--;
+        }
+        if(this.month == c.get(Calendar.MONTH)+1){
+            if(this.day > c.get(Calendar.DAY_OF_MONTH)){
+                age--;
+            }
+        }
+        return age >= 16;
+
+    }
+
     public boolean isValid() {
         if(month > 12 || month < 1) {
             return false;
@@ -99,6 +113,7 @@ public class date implements Comparable<date> {
                 case 1:
                     if(day > daysInJanuary)
                         return false;
+                    break;
                 case 2:
                     if(isLeapYear()){
                         if(day > daysInFebruaryLeapYear)
@@ -107,36 +122,46 @@ public class date implements Comparable<date> {
                         if(day > daysInFebruary)
                             return false;
                     }
+                    break;
                 case 3:
                     if(day > daysInMarch)
                         return false;
+                    break;
                 case 4:
                     if(day > daysInApril)
                         return false;
+                    break;
                 case 5:
                     if(day > daysInMay)
                         return false;
                 case 6:
                     if(day > daysInJune)
                         return false;
+                    break;
                 case 7:
                     if(day > daysInJuly)
                         return false;
+                    break;
                 case 8:
                     if(day > daysInAugust)
                         return false;
+                    break;
                 case 9:
                     if(day > daysInSeptember)
                         return false;
+                    break;
                 case 10:
                     if(day > daysInOctober)
                         return false;
+                    break;
                 case 11:
                     if(day > daysInNovember)
                         return false;
+                    break;
                 case 12:
                     if(day > daysInDecember)
                         return false;
+                    break;
             }
             if(year < c.get(Calendar.YEAR)){
                 return true;
