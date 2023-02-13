@@ -183,4 +183,15 @@ public class Date implements Comparable<Date> {
         }
     }
 
+    //testbed main method checking for validity of date
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while(true){
+            System.out.println("Enter a date in the format mm/dd/yyyy");
+            String date = in.nextLine();
+            if(date.equals("Q")) break;
+            Date d = new Date(date);
+            System.out.println(d.isValid());
+        }
+    }
 }
