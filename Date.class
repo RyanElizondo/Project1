@@ -1,4 +1,14 @@
+package roster;
+
 import java.util.Calendar;
+import java.util.Scanner;
+
+/**
+ * Date.java
+ * Date class for storing and comparing dates. Contains methods for comparing, printing, parsing dates,
+ * and checking for validity.
+ * @author Alex Virilli, Ryan Elizondo-Fallas
+ */
 public class Date implements Comparable<Date> {
     private int year;
     private int month;
@@ -7,22 +17,34 @@ public class Date implements Comparable<Date> {
     Calendar c = Calendar.getInstance();
 
     @Override
-    public String toString(){
+    public String toString(){ //return the date in the format mm/dd/yyyy
         String  str = "";
         str = str + this.month + "/";
         str = str + this.day + "/";
         str = str + this.year;
         return str;
     }
+
+    /**
+     * equals method for comparing dates and determining equality
+     * @param Date the object to be compared.
+     * @return true if the dates are equal, false if they are not
+     */
     @Override
     public boolean equals(Object Date){
-       if(this == Date) return true;
-       if(!(Date instanceof Date)) return false;
-       Date D = (Date) Date;
-       if(this.day == D.getDay() && this.month == D.getMonth() && this.year == D.getYear()) return true;
-       return false;
+        if(this == Date) return true;
+        if(!(Date instanceof Date)) return false;
+        Date D = (Date) Date;
+        if(this.day == D.getDay() && this.month == D.getMonth() && this.year == D.getYear()) return true;
+        return false;
     }
-    //if the instance object is less than the parameter object return -1, if larger return 1, if equal return 0
+
+    /**
+     * compareTo method for comparing dates and determining order
+     * @param Date the object to be compared.
+     * @return 1 if this date is greater than the date being compared, -1 if this date is less than the date being
+     * compared, 0 if they are equal
+     */
     @Override
     public int compareTo(Date Date){
         if(this.year < Date.getYear()) return -1;
@@ -34,25 +56,29 @@ public class Date implements Comparable<Date> {
         return 0;
     }
 
-    public Date() {
+    public Date() { //default constructor
         this.year = c.get(Calendar.YEAR);
         this.day = c.get(Calendar.DAY_OF_MONTH);
         this.month = c.get(Calendar.MONTH) + 1; //since calendar.month goes from 0 (jan) to 11 (dec)
     }
 
+    /**
+     * constructor that takes a string in the format mm/dd/yyyy
+     * @param date the string to be parsed
+     */
     public Date(String date) {
         this.month = Integer.parseInt(date.substring(0,date.indexOf("/")));
         this.day = Integer.parseInt(date.substring(date.indexOf("/")+1,date.lastIndexOf("/")));
         this.year =  Integer.parseInt(date.substring(date.lastIndexOf("/")+1));
     }
 
-    public int getDay(){
+    public int getDay(){ //return the day
         return day;
     }
-    public int getMonth(){
+    public int getMonth(){ //return the month
         return month;
     }
-    public int getYear(){
+    public int getYear(){ //return the year
         return year;
     }
 
@@ -73,8 +99,11 @@ public class Date implements Comparable<Date> {
     public static final int daysInNovember = 30;
     public static final int daysInDecember = 31;
 
-
-    public boolean isLeapYear() {
+    /**
+     * determines if the year is a leap year
+     * @return true if the year is a leap year, false if it is not
+     */
+    public boolean isLeapYear() { //return true if the year is a leap year
         if((year % QUADRENNIAL) == 0){
             if((year % CENTENNIAL)==0){
                 if((year % QUATERCENTENNIAL)==0){
@@ -90,7 +119,11 @@ public class Date implements Comparable<Date> {
         }
     }
 
-    public boolean isSixteen() {
+    /**
+     * determines if the student is 16 years old
+     * @return true if the student is 16 years old, false if they are not
+     */
+    public boolean isSixteen() { //return true if the student is 16 years old
         int age = c.get(Calendar.YEAR) - this.year;
         boolean tf;
         if(this.month > c.get(Calendar.MONTH)+1){
@@ -105,7 +138,11 @@ public class Date implements Comparable<Date> {
 
     }
 
-    public boolean isValid() {
+    /**
+     * determines if the date is valid
+     * @return true if the date is valid, false if it is not
+     */
+    public boolean isValid() { //return true if the date is valid
         if(month > 12 || month < 1) {
             return false;
         } else {
@@ -182,8 +219,11 @@ public class Date implements Comparable<Date> {
             }
         }
     }
-
-    //testbed main method checking for validity of date
+    /**
+     * main method for testing isValid()
+     * @param args
+     *
+     */
     public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         while(true){
