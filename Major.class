@@ -1,3 +1,9 @@
+package roster;
+
+/**
+ * This enum class contains the major codes and the school where the major exists.
+ * @Author: Alex Virilli, Ryan Elizondo-Fallas
+ */
 public enum Major {
     //declare enum types
     CS("01:198","SAS"), MATH("01:640","SAS"),
@@ -41,4 +47,3 @@ public enum Major {
     }
 
 }
-
