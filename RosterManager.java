@@ -1,4 +1,10 @@
+package roster;
 import java.util.Scanner;
+/**
+ * RosterManager is a class that manages a roster of students. It allows the user to add, remove, and print students.
+ * It also allows the user to print students by school, major, and standing.
+ * @Author: Alex Virilli, Ryan Elizondo-Fallas
+ */
 public class RosterManager {
     Scanner sc = new Scanner(System.in); Roster roster = new Roster(); Major[] majors = Major.values();
     void run() {
