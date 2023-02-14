@@ -1,14 +1,21 @@
+package roster;
+
+/**
+ * Student class where a students profile, major, and credits completed are stored and used
+@Author: Alex Virilli, Ryan Elizondo-Fallas
+ */
 public class Student implements Comparable<Student>{
 
     private Profile profile;
     private Major major;
     private int creditCompleted;
 
-    public Student(Profile profile, Major major, int creditCompleted){
+    public Student(Profile profile, Major major, int creditCompleted){ //constructor
         this.profile = profile;
         this.major = major;
         this.creditCompleted = creditCompleted;
     }
+    //getter methods
     public Profile getProfile(){
         return this.profile;
     }
@@ -23,6 +30,11 @@ public class Student implements Comparable<Student>{
         this.major = major;
     }
 
+    /**
+     * compareTo method for comparing students and determining order
+     * @param student the object to be compared.
+     * @return 1 if this student is greater than the student being compared, -1 if this student is less than the student being compared, 0 if they are equal
+     */
     @Override
     public int compareTo(Student student) {
         if((this.profile.compareTo(student.getProfile())) > 0)
@@ -31,6 +43,12 @@ public class Student implements Comparable<Student>{
             return -1;
         return 0;
     }
+
+    /**
+     * equals method for comparing students and determining equality
+     * @param student
+     * @return true if the students are equal, false if they are not
+     */
     @Override
     public boolean equals(Object student) {
         if(this == student) return true;
@@ -40,17 +58,25 @@ public class Student implements Comparable<Student>{
         //if(this.compareTo(s)==0) return true;
         return false;
     }
+
+    /**
+     * toString method for printing students
+     * @return a string containing the students profile, major, credits completed, and grade
+     */
     @Override
-    public String toString(){
+    public String toString(){ //toString method for printing students
         return profile.toString() + " (" + major.getMajorCode() + " " + major.getName() + " " + major.getSchool() + ") credits completed: " + creditCompleted
                 + " (" + getGrade() + ")";
     }
 
+    /**
+     * getGrade method for determining the grade of a student based on the number of credits completed
+     * @return a string containing the grade of the student
+     */
     public String getGrade(){
         if(this.creditCompleted < 30) return "Freshman";
         if(this.creditCompleted < 60) return "Sophomore";
         if(this.creditCompleted < 90) return "Junior";
         return "Senior";
     }
-
 }
