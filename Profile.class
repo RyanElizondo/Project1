@@ -1,13 +1,26 @@
+package roster;
+
+/**
+ * Profile.java
+ *
+ * This class represents a profile for a user of the social network. It contains
+ * the user's first name, last name, and date of birth. It also contains methods
+ * for comparing and printing profiles.
+ *
+ * @author Alex Virilli, Ryan Elizondo-Fallas
+ */
 public class Profile implements Comparable<Profile> {
+    //instance variables
     private String lname;
     private String fname;
     private Date dob;
 
-    public Profile(String lname, String fname, Date dob){
+    public Profile(String lname, String fname, Date dob){ //constructor
         this.lname = lname;
         this.fname = fname;
         this.dob = dob;
     }
+    //getter methods
     public String getFname(){
         return fname;
     }
@@ -17,10 +30,21 @@ public class Profile implements Comparable<Profile> {
     public Date getDob(){
         return dob;
     }
+
+    /**
+     * toString method for printing profiles
+     * @return a string representation of the profile
+     */
     @Override
     public String toString() {
-       return this.fname + " " + this.lname + " " + this.dob.toString();
+        return this.fname + " " + this.lname + " " + this.dob.toString();
     }
+
+    /**
+     * equals method for comparing profiles and determining equality
+     * @param profile the object to be compared.
+     * @return true if the profiles are equal, false if they are not
+     */
     @Override
     public boolean equals(Object profile){
         if(this == profile) return true;
@@ -29,6 +53,12 @@ public class Profile implements Comparable<Profile> {
         if(this.fname.equalsIgnoreCase(p.getFname()) && this.lname.equalsIgnoreCase(p.getLname()) && this.dob.equals(p.getDob())) return true;
         return false;
     }
+
+    /**
+     * compareTo method for comparing profiles and determining order
+     * //@param rosterpackage.Profile the object to be compared.
+     * @return 1 if this profile is greater than the profile being compared, -1 if this profile is less than the profile being compared, 0 if they are equal
+     */
     @Override
     public int compareTo(Profile p){
         if(this.lname.compareTo(p.getLname()) < 0) return -1;
