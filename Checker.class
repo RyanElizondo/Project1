@@ -1,6 +1,23 @@
+package roster;
+
+/**
+ * Checker.java
+ *
+ * This class contains methods that check if a line is valid to add to the roster, and if it is, it makes a student from the line.
+ * It also contains a method that changes a students major.
+ *
+ * @author Alex Virilli, Ryan Elizondo-Fallas
+
+ */
 public class Checker {
     public Checker(){
     }
+
+    /**
+     * isInt method for checking if a string is an integer
+     * @param string
+     * @return true if string is an integer, false if not
+     */
     public boolean isInt(String string) {
         try {
             Integer.parseInt(string);
@@ -10,6 +27,12 @@ public class Checker {
         }
     }
 
+    /**
+     * isValidToAdd method for checking if a line is valid to add to the roster
+     * @param date
+     * @param line
+     * @return true if line is valid to add to roster, false if not
+     */
     public boolean isValidToAdd(Date date, String[] line){
         if(date.isValid()){
             if(date.isSixteen()) {
@@ -24,7 +47,7 @@ public class Checker {
                         System.out.println("Credits completed invalid: not an integer!");
                     }
                 } else {
-                    System.out.println("Major code invalid: " + line[4]);
+                    System.out.println("rosterpackage.Major code invalid: " + line[4]);
                 }
             } else {
                 System.out.println("DOB invalid: " + date.toString() + " younger than 16 years old.");
@@ -35,15 +58,30 @@ public class Checker {
         return false;
     }
 
+    /**
+     * makeStudent method for making a student from a line
+     * @param profile
+     * @param major
+     * @param creditsCompleted
+     * @return student
+     */
     public Student makeStudent(Profile profile, Major major, int creditsCompleted){
         Student student = new Student(profile, major, creditsCompleted);
         return student;
     }
 
+
+    /**
+     * changeStudentMajor method for changing a students major
+     * @param line
+     * @param roster
+     * @param majors
+     * @return true if student major is changed, false if not
+     */
     public boolean changeStudentMajor(String line[], Roster roster, Major majors[]){
         int majorIndex = Major.CS.getMajorIndex(line[4]);
         if(majorIndex==-1){
-            System.out.println("Major code invalid: " + line[4]);
+            System.out.println("rosterpackage.Major code invalid: " + line[4]);
             return false;
         }
         Date date = new Date(line[3]);
